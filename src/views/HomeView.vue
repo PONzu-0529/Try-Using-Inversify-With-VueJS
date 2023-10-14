@@ -8,7 +8,6 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { container } from '@/main';
 import HelloWorld from '@/components/HelloWorld.vue'; // @ is an alias to /src
 import { ContainerHelper } from '@/helpers/ContainerHelper';
 import { SampleService1, ServiceResponse } from '@/services/SampleService1';
@@ -25,7 +24,7 @@ export default class HomeView extends Vue {
   constructor() {
     super();
 
-    this.sampleService1 = ContainerHelper.get<SampleService1>(container, 'SampleService1');
+    this.sampleService1 = ContainerHelper.get<SampleService1>('SampleService1');
     this.sampleData = this.sampleService1.getServiceResponse();
   }
 }

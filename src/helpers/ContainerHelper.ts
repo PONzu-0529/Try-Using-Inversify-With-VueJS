@@ -1,40 +1,37 @@
-import { Container } from "inversify";
+import { container } from "@/container";
 
 /**
- * Inversify Container
+ * Container Helper
  */
 export class ContainerHelper {
     /**
      * Bind
-     * @param container
-     * @param serviceIdentifier
-     * @param constructor
+     * @param serviceIdentifier The interface or class symbol
+     * @param constructor The class constructor
      */
-    public static bind<T>(container: Container, serviceIdentifier: string, constructor: {
+    public static bind<T>(serviceIdentifier: string, constructor: {
         new (...args: any[]): T;
     }): void {
         container.bind<T>(serviceIdentifier).to(constructor);
     }
 
     /**
-     * ReBind
-     * @param container
-     * @param serviceIdentifier
-     * @param constructor
+     * Rebind
+     * @param serviceIdentifier The interface or class symbol
+     * @param constructor The class constructor
      */
-    public static rebind<T>(container: Container, serviceIdentifier: string, constructor: {
+    public static rebind<T>(serviceIdentifier: string, constructor: {
         new (...args: any[]): T;
     }): void {
         container.rebind<T>(serviceIdentifier).to(constructor);
     }
 
     /**
-     * Get Instance
-     * @param container
-     * @param serviceIdentifier
-     * @returns
+     * Get
+     * @param serviceIdentifier The interface or class symbol
+     * @returns The class instance
      */
-    public static get<T>(container: Container, serviceIdentifier: string): T {
+    public static get<T>(serviceIdentifier: string): T {
         return container.get<T>(serviceIdentifier);
     }
 }
